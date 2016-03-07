@@ -6,7 +6,7 @@
 #    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/23 13:50:13 by ale-naou          #+#    #+#              #
-#    Updated: 2016/03/07 16:36:31 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/03/07 18:35:17 by ale-naou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJ_PATH	= ./obj/
 INC_PATH	= ./include/
 LIB_PATH	= ./lib
 
-NAME		= push_swap 
+NAME		= lem_in 
 CC			= gcc
 CFLAGS		= -Wall -Werror	-Wextra
 
