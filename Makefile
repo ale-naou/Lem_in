@@ -6,7 +6,7 @@
 #    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/23 13:50:13 by ale-naou          #+#    #+#              #
-#    Updated: 2016/03/07 18:35:17 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/03/09 15:02:03 by ale-naou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME		= lem_in
 CC			= gcc
 CFLAGS		= -Wall -Werror	-Wextra
 
-SRC_NAME	= main.c 
+SRC_NAME	= main.c parsing.c error.c 
 OBJ_NAME	= $(SRC_NAME.c=.o)
 LIB_NAME	= libft.a
 
