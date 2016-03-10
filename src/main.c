@@ -6,13 +6,21 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/09 19:54:06 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/10 16:57:31 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void debug_message(t_env *e)     //
+void		debug(t_env *e)
+{
+	ft_putstr("Coucou ");
+	ft_putnbr(e->debug);
+	ft_putchar('\n');
+	e->debug++;
+}
+
+void		display_var(t_env *e)     //
 {
 	ft_putstr("\e[31m");
 	ft_putstr("e->n_ants    : ");
@@ -37,10 +45,12 @@ static void	init_env(t_env *e)
 	e->end_mark = 0;
 }
 
-int		main(void)
+int			main(void)
 {
 	t_env	e;
 
+	e.debug = 1;
+	
 	init_env(&e);
 	parsing(&e);
 	return (0);

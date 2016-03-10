@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/09 19:54:03 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/10 16:57:35 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ typedef struct		s_room
 	char			*name;
 	double			x;
 	double			y;
-	struct s_tube	*next;
+	int				start;
+	int				end;
+	struct s_room	*next;
 }					t_room;
 
 typedef struct 		s_env
 {
 	t_tube			*t;
-	t_room			*r;
 	t_room			*start;
 	t_room			*end;
 	char			**room_split;
@@ -47,11 +48,27 @@ typedef struct 		s_env
 	double			n_tubes;
 	int				fd;
 	char			*line;
+	int				debug;					//
 }					t_env;
 
 
+/*
+**	Parsing
+*/
+
 void				parsing(t_env *e);
+
+/*
+**	Miscaellenous
+*/
+
 void				error(t_env *e, int n, char *str);
-void				debug_message(t_env *e);
+
+/*
+**	Debug Fonctions
+*/
+
+void				display_var(t_env *e);	//
+void				debug(t_env *e);		//
 
 #endif
