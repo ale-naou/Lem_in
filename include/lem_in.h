@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/10 16:57:35 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/11 19:40:43 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,49 +19,70 @@
 #define MAX_INT 2147483647
 #define MIN_INT	-2147483648
 
+typedef struct		s_dis
+{
+	char			*str;
+	struct s_dis	*next;
+}					t_dis;
+
 typedef struct		s_tube
 {
-	struct s_room	*next;
+	char			*start;
+	char			*end;
+	struct s_tube	*next;
 }					t_tube;
 
 typedef struct		s_room
 {
 	char			*name;
-	double			x;
-	double			y;
+	int				x;
+	int				y;
 	int				start;
 	int				end;
+	int				weight;
+	int				ant;
 	struct s_room	*next;
 }					t_room;
 
 typedef struct 		s_env
 {
-	t_tube			*t;
-	t_room			*start;
-	t_room			*end;
+	t_room			*room_start;
+	t_room			*room_end;
+	int				start_mark;
+	int				end_mark;
+	t_tube			*tube_start;
+	t_tube			*tube_end;
+	t_dis			*dis_start;
+	t_dis			*dis_end;
 	char			**room_split;
+	char			**tube_split;
 	double			n_read;
 	double			n_ants;
 	double			n_rooms;
-	int				start_mark;
-	int				end_mark;
 	double			n_tubes;
 	int				fd;
 	char			*line;
+
 	int				debug;					//
 }					t_env;
 
 
 /*
-**	Parsing
+**	Parsing and check
 */
 
 void				parsing(t_env *e);
+void				get_ants(t_env *e);
+void				get_rooms(t_env *e);
+void				get_tubes(t_env *e);
+int					get_comments(t_env *e);
+void				get_display(t_env *e);
 
 /*
 **	Miscaellenous
 */
 
+void				display(t_env *e);
 void				error(t_env *e, int n, char *str);
 
 /*

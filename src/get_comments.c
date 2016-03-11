@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   get_comments.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 13:57:26 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/11 18:32:37 by ale-naou         ###   ########.fr       */
+/*   Created: 2016/03/11 14:03:41 by ale-naou          #+#    #+#             */
+/*   Updated: 2016/03/11 16:33:17 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			parsing(t_env *e)
+int		get_comments(t_env *e)
 {
-	while (ft_get_next_line(e->fd, &e->line) != 0)
+	if (e->line[0] == '#')
 	{
-		if (e->n_read == 0)
-			get_ants(e);
-		else if (e->n_read == 1)
-			get_rooms(e);
-		get_display(e);
+		if (e->line[1] != '#')
+			return (1);
+		if (ft_strcmp(e->line, "##start") != 0 && ft_strcmp(e->line, "##end") != 0)
+			error(e, 2, "Bad command input");
 	}
-	while (e->dis_start != NULL)
-	{
-		ft_putendl(e->dis_start->str);
-		e->dis_start = e->dis_start->next;
-	}
-	//display_var(e);
+	return (0);
 }

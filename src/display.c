@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 13:57:26 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/11 18:32:37 by ale-naou         ###   ########.fr       */
+/*   Created: 2016/03/11 18:40:09 by ale-naou          #+#    #+#             */
+/*   Updated: 2016/03/11 18:54:04 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			parsing(t_env *e)
+static void		display_ants(t_env *e)
 {
-	while (ft_get_next_line(e->fd, &e->line) != 0)
-	{
-		if (e->n_read == 0)
-			get_ants(e);
-		else if (e->n_read == 1)
-			get_rooms(e);
-		get_display(e);
-	}
+	(void)e;
+}
+
+static void		display_list(t_env *e)
+{
 	while (e->dis_start != NULL)
 	{
 		ft_putendl(e->dis_start->str);
 		e->dis_start = e->dis_start->next;
 	}
-	//display_var(e);
+}
+
+void			display(t_env *e)
+{
+	display_list(e);
+	display_ants(e);
 }

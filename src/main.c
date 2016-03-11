@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/10 16:57:31 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/11 19:03:28 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,18 @@ static void	init_env(t_env *e)
 {
 	e->fd = 0;
 	e->line = NULL;
-	e->r->name = NULL;
-	e->r->x = 0;
-	e->r->y = 0;
 	e->n_read = 0;
+	e->n_ants = 0;
+	e->n_rooms = 0;
+	e->n_tubes = 0;
 	e->room_split = NULL;
+	e->tube_split = NULL;
+	e->dis_start = NULL;
+	e->dis_end = NULL;
+	e->room_start = NULL;
+	e->room_end = NULL;
+	e->tube_start = NULL;
+	e->tube_end = NULL;
 	e->start_mark = 0;
 	e->end_mark = 0;
 }
@@ -53,5 +60,6 @@ int			main(void)
 	
 	init_env(&e);
 	parsing(&e);
+	display(&e);
 	return (0);
 }
