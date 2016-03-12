@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/11 19:44:48 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/12 18:56:02 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	init_env(t_env *e)
 	e->n_ants = 0;
 	e->n_rooms = 0;
 	e->n_tubes = 0;
-	e->room_split = NULL;
-	e->tube_split = NULL;
+	e->r_tab = NULL;
+	e->t_tab = NULL;
 	e->dis_start = NULL;
 	e->dis_end = NULL;
 	e->room_start = NULL;
@@ -60,6 +60,36 @@ int			main(void)
 	
 	init_env(&e);
 	parsing(&e);
-	display(&e);
+//	display(&e);
+	ft_putnbr(e.n_ants);
+	ft_putchar('\n');
+	while (e.room_start != NULL)
+	{
+		ft_putstr(e.room_start->name);
+		ft_putchar('	');
+		ft_putnbr(e.room_start->x);
+		ft_putchar('	');
+		ft_putnbr(e.room_start->y);
+		ft_putstr("\e[31m");
+		ft_putchar('	');
+		ft_putstr("s : ");
+		ft_putnbr(e.room_start->start);
+		ft_putstr("\e[0m");		
+		ft_putstr("\e[32m");
+		ft_putchar('	');
+		ft_putstr("end : ");
+		ft_putnbr(e.room_start->end);
+		ft_putstr("\e[0m");
+		ft_putchar('\n');
+		e.room_start = e.room_start->next;
+	}
+	while (e.tube_start != NULL)
+	{
+		ft_putstr(e.tube_start->start);
+		ft_putchar('-');
+		ft_putstr(e.tube_start->end);
+		ft_putchar('\n');
+		e.tube_start = e.tube_start->next;
+	}
 	return (0);
 }

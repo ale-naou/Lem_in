@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/11 19:44:43 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/12 16:36:03 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ typedef struct 		s_env
 	t_tube			*tube_end;
 	t_dis			*dis_start;
 	t_dis			*dis_end;
-	char			**room_split;
-	char			**tube_split;
+	char			**r_tab;
+	char			**t_tab;
 	double			n_read;
 	double			n_ants;
 	double			n_rooms;
@@ -75,6 +75,8 @@ void				parsing(t_env *e);
 void				get_ants(t_env *e);
 void				get_rooms(t_env *e);
 void				get_tubes(t_env *e);
+int					is_tube(t_env *e);
+void				add_tube(t_env *e);
 int					get_comments(t_env *e);
 void				get_display(t_env *e);
 

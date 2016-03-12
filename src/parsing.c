@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:57:26 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/11 18:32:37 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/12 18:18:18 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ void			parsing(t_env *e)
 			get_ants(e);
 		else if (e->n_read == 1)
 			get_rooms(e);
+		else if (e->n_read == 2)
+			get_tubes(e);
 		get_display(e);
-	}
-	while (e->dis_start != NULL)
-	{
-		ft_putendl(e->dis_start->str);
-		e->dis_start = e->dis_start->next;
 	}
 	//display_var(e);
 }

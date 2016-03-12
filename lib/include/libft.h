@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 17:35:41 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/06 18:19:22 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/12 17:04:53 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_strisprint(const char *str);
+int		ft_strisdigit(const char *str);
 size_t	ft_strlen(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
