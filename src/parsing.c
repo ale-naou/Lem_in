@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:57:26 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/12 18:18:18 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/14 13:38:03 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,4 @@ void			parsing(t_env *e)
 			get_tubes(e);
 		get_display(e);
 	}
-	//display_var(e);
 }

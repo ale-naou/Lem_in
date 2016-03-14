@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/12 19:24:48 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/14 19:45:46 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void		add_room(t_env *e)
 		tmp->end = 1;
 		e->end_mark += 10;
 	}
-
-	e->end_mark == 1 ? tmp->end = 1 : 0; 
 	tmp->name = e->r_tab[0];
 	tmp->x = ft_atof(e->r_tab[1]);
 	tmp->y = ft_atof(e->r_tab[2]);	
@@ -82,9 +80,8 @@ void			get_rooms(t_env *e)
 		{
 			ft_strcmp(e->line, "##start") == 0 ? e->start_mark++ : 0;
 			ft_strcmp(e->line, "##end") == 0 ? e->end_mark++ : 0;
-			(e->start_mark > 1 && e->start_mark < 10) ||
-				(e->end_mark > 1 && e->end_mark < 10) ?
-				error(e, 5, "Multiples starts or ends notifications") : 0;
+			if (e->start_mark > 1 && e->end_mark > 1)
+				error(e, 5, "Multiples starts or ends notifications");
 		}
 		else if (is_room(e) == 0)
 		{
