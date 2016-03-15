@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/12 19:24:44 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/15 18:19:05 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_room
 	int				end;
 	int				weight;
 	int				ant;
+	struct s_tube	*r_tube;
 	struct s_room	*next;
 }					t_room;
 
@@ -72,13 +73,20 @@ typedef struct 		s_env
 */
 
 void				parsing(t_env *e);
-void				get_ants(t_env *e);
-void				get_rooms(t_env *e);
-void				get_tubes(t_env *e);
+int					get_ants(t_env *e);
+int					get_rooms(t_env *e);
+int					get_tubes(t_env *e);
+int					check_tube(t_env *e);
 int					is_tube(t_env *e);
 void				add_tube(t_env *e);
 int					get_comments(t_env *e);
 void				get_display(t_env *e);
+
+/*
+**	Linking rooms between them + pathfinding + algo fonctions
+*/
+
+	int				create_link(t_env *e);
 
 /*
 **	Miscaellenous

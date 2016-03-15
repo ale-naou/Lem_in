@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ants.c                                         :+:      :+:    :+:   */
+/*   create_link.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/11 11:19:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/15 17:49:11 by ale-naou         ###   ########.fr       */
+/*   Created: 2016/03/15 15:25:33 by ale-naou          #+#    #+#             */
+/*   Updated: 2016/03/15 15:53:05 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "lem_in"
 
-int		get_ants(t_env *e)
+int		create_link(t_env *e)
 {
-	if (get_comments(e) == 0)
+	s_room	*tmp;
+
+	tmp = e->room_start;
+	while (tmp != NULL)
 	{
-		e->n_ants = ft_atof(e->line);
-		if (e->n_ants < MIN_INT || e->n_ants > MAX_INT)
-		{
-			ft_putendl("Either WAAAY too much ants or not enough at all");
-			return (-1);
-		}
-		if (e->n_ants <= 0)
-		{
-			ft_putendl("No ants");
-			return (-1);
-		}
-		e->n_read++;
+	
 	}
 	return (0);
 }

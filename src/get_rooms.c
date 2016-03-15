@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/14 19:45:46 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/15 18:28:41 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static void		add_room(t_env *e)
 	if (e->start_mark == 1) 
 	{
 		tmp->start = 1;
-		e->start_mark += 10;
+		e->start_mark++;
 	}
 	if (e->end_mark == 1) 
 	{
 		tmp->end = 1;
-		e->end_mark += 10;
+		e->end_mark++;
 	}
 	tmp->name = e->r_tab[0];
 	tmp->x = ft_atof(e->r_tab[1]);
@@ -54,15 +54,11 @@ static int		is_room(t_env *e)
 	{
 		if (is_tube(e) == 0)
 		{
-			add_tube(e);
-			e->n_tubes++;
 			e->n_read = 2;
-			return (1);
+			return (-1);
 		}
 	}
-	if (!e->r_tab[0] || !e->r_tab[1] || !e->r_tab[2])
-		error(e, 7, "Invalid room 1");
-	if (e->r_tab[3])
+	if (!e->r_tab[0] || !e->r_tab[1] || !e->r_tab[2] || e->r_tab[3])
 		error(e, 7, "Invalid room 1");
 	if (ft_strisprint(e->r_tab[0]) == 0 || ft_strisdigit(e->r_tab[1]) == 0 ||
 			ft_strisdigit(e->r_tab[2]) == 0)
@@ -70,7 +66,7 @@ static int		is_room(t_env *e)
 	return (0);
 }
 
-void			get_rooms(t_env *e)
+int				get_rooms(t_env *e)
 {
 
 	if (get_comments(e) == 0)
@@ -80,8 +76,11 @@ void			get_rooms(t_env *e)
 		{
 			ft_strcmp(e->line, "##start") == 0 ? e->start_mark++ : 0;
 			ft_strcmp(e->line, "##end") == 0 ? e->end_mark++ : 0;
-			if (e->start_mark > 1 && e->end_mark > 1)
-				error(e, 5, "Multiples starts or ends notifications");
+			if (e->start_mark > 2 && e->end_mark > 2)
+			{
+				ft_putendl("Multiples starts or ends notifications");
+				return (-1);
+			}
 		}
 		else if (is_room(e) == 0)
 		{
@@ -89,4 +88,5 @@ void			get_rooms(t_env *e)
 			e->n_rooms++;
 		}
 	}
+	return (0);
 }
