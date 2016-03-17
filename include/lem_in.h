@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/15 18:19:05 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/17 19:09:03 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct		s_room
 	int				end;
 	int				weight;
 	int				ant;
-	struct s_tube	*r_tube;
+	int				n_links;
+	struct s_room	**t_roomlinks;
 	struct s_room	*next;
 }					t_room;
 
@@ -86,7 +87,13 @@ void				get_display(t_env *e);
 **	Linking rooms between them + pathfinding + algo fonctions
 */
 
-	int				create_link(t_env *e);
+int					create_link(t_env *e);
+
+/*
+**	Deleting fonctions
+*/
+
+void				del_invalidtube(t_env *e);
 
 /*
 **	Miscaellenous

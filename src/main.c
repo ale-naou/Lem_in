@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/15 18:44:40 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/17 19:08:58 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void		display_var(t_env *e)     //
 		ft_putstr("end : ");
 		ft_putnbr(e->room_start->end);
 		ft_putstr("\e[0m");
+		ft_putchar('	');
+		ft_putnbr(e->room_start->n_links);
 		ft_putchar('\n');
 		e->room_start = e->room_start->next;
 	}
@@ -82,6 +84,7 @@ int			main(void)
 	
 	init_env(&e);
 	parsing(&e);
+	create_link(&e);
 //	display(&e);
 	display_var(&e);
 	return (0);

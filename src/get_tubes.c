@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:33:50 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/15 18:44:36 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/17 14:37:20 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void		add_tube(t_env *e)
 
 	if (e->tube_start == NULL)
 	{
-		(!(tmp = (t_tube *)malloc(sizeof(t_tube))))	?
-			error(e, 4, "Erreur malloc") : 0;
+		if (!(tmp = (t_tube *)malloc(sizeof(t_tube))))
+			error(e, 4, "Erreur malloc");
 		tmp->start = e->t_tab[0];
 		tmp->end = e->t_tab[1];
 		tmp->next = NULL;
@@ -28,8 +28,8 @@ void		add_tube(t_env *e)
 	}
 	else
 	{
-		(!(tmp = (t_tube *)malloc(sizeof(t_tube))))	?
-			error(e, 4, "Erreur malloc") : 0;
+		if (!(tmp = (t_tube *)malloc(sizeof(t_tube))))
+			error(e, 4, "Erreur malloc");
 		tmp->start = e->t_tab[0];
 		tmp->end = e->t_tab[1];
 		tmp->next = NULL;
@@ -54,16 +54,15 @@ int			get_tubes(t_env *e)
 	{
 		if (is_tube(e) == 0)
 		{
+			add_tube(e);
 			if (check_tube(e) == -1)
 			{
+				del_invalidtube(e);
 				e->n_read = 3;
 				return (-1);
 			}
 			else
-			{
-				add_tube(e);
 				e->n_tubes++;
-			}
 		}
 	}
 	return (0);

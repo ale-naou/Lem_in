@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/15 18:28:41 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/17 18:04:24 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static void		add_room(t_env *e)
 		error(e, 4, "Erreur malloc") : 0;
 	tmp->start = 0;
 	tmp->end = 0;
+	tmp->weight = 0;
+	tmp->ant = 0;
+	tmp->n_links = 0;
 	if (e->start_mark == 1) 
 	{
 		tmp->start = 1;
@@ -87,6 +90,8 @@ int				get_rooms(t_env *e)
 			add_room(e);
 			e->n_rooms++;
 		}
+		else
+			return (-1);
 	}
 	return (0);
 }

@@ -6,13 +6,61 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 16:36:18 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/15 18:44:39 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/17 17:12:27 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		check_tube_connec(t_env *e, t_tube *tube)
+void	del_invalidtube(t_env *e)
+{
+	t_tube	*tube;
+
+	if (e->tube_start && e->tube_start->next)
+	{
+		tube = e->tube_start;
+		while (tube->next != e->tube_end)
+			tube = tube->next;
+		ft_strdel(&e->tube_end->start);
+		ft_strdel(&e->tube_end->end);
+		free(e->tube_end);
+		e->tube_end = NULL;
+		tube->next = NULL;
+		e->tube_end = tube;
+	}
+	else if (e->tube_start && !e->tube_start->next)
+	{
+		ft_strdel(&e->tube_start->start);
+		ft_strdel(&e->tube_start->end);
+		free(e->tube_start);
+		e->tube_start = NULL;
+	}
+}
+
+static int	check_tube_clone(t_env *e, t_tube *tube)
+{
+	t_tube	*t_verif;
+	int 	clone;
+	int 	rev_clone;
+
+	(void)e;
+	clone = 0;
+	rev_clone = 0;
+	t_verif = tube->next;
+	while (t_verif != NULL)
+	{
+		(ft_strcmp(tube->start, t_verif->start) == 0 && 
+			ft_strcmp(tube->end, t_verif->end) == 0) ? clone++ : 0;
+		(ft_strcmp(tube->end, t_verif->start) == 0 && 
+			ft_strcmp(tube->start, t_verif->end) == 0) ? rev_clone++ : 0;
+		t_verif = t_verif->next;
+	}
+	if (clone != 0 || rev_clone != 0)
+		return (-1);
+	return (0);
+}
+
+static int	check_tube_connec(t_env *e, t_tube *tube)
 {
 	t_room	*room;
 	int		start;
@@ -42,7 +90,15 @@ int		check_tube(t_env *e)
 		if (ft_strcmp(tube->start, tube->end) != 0)
 		{
 			if (check_tube_connec(e, tube) == 0)
-				tube = tube->next;
+			{
+				if (check_tube_clone(e, tube) == 0)
+					tube = tube->next;
+				else
+				{
+					ft_putendl("Multiple declaration of similar tube");
+					return (-1);
+				}
+			}
 			else
 			{
 				ft_putendl("Tube connected to a room that doesn't exist");
