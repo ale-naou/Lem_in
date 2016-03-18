@@ -6,13 +6,13 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 16:36:18 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/17 17:12:27 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/18 16:45:00 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	del_invalidtube(t_env *e)
+void		del_invalidtube(t_env *e)
 {
 	t_tube	*tube;
 
@@ -40,8 +40,8 @@ void	del_invalidtube(t_env *e)
 static int	check_tube_clone(t_env *e, t_tube *tube)
 {
 	t_tube	*t_verif;
-	int 	clone;
-	int 	rev_clone;
+	int		clone;
+	int		rev_clone;
 
 	(void)e;
 	clone = 0;
@@ -49,9 +49,9 @@ static int	check_tube_clone(t_env *e, t_tube *tube)
 	t_verif = tube->next;
 	while (t_verif != NULL)
 	{
-		(ft_strcmp(tube->start, t_verif->start) == 0 && 
+		(ft_strcmp(tube->start, t_verif->start) == 0 &&
 			ft_strcmp(tube->end, t_verif->end) == 0) ? clone++ : 0;
-		(ft_strcmp(tube->end, t_verif->start) == 0 && 
+		(ft_strcmp(tube->end, t_verif->start) == 0 &&
 			ft_strcmp(tube->start, t_verif->end) == 0) ? rev_clone++ : 0;
 		t_verif = t_verif->next;
 	}
@@ -80,7 +80,7 @@ static int	check_tube_connec(t_env *e, t_tube *tube)
 	return (0);
 }
 
-int		check_tube(t_env *e)
+int			check_tube(t_env *e)
 {
 	t_tube	*tube;
 

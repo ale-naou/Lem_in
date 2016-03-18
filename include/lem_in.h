@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/17 19:09:03 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/18 19:29:43 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct 		s_env
 	double			n_ants;
 	double			n_rooms;
 	double			n_tubes;
+	int				i;
 	int				fd;
 	char			*line;
 

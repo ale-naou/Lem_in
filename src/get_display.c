@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 14:48:18 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/17 11:44:28 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/18 16:47:16 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_display(t_env *e)
 	if (e->dis_start == NULL)
 	{
 		(!(tmp = (t_dis *)malloc(sizeof(t_dis)))) ?
-			error(e, 4, "Erreur malloc"): 0;
+			error(e, 4, "Erreur malloc") : 0;
 		tmp->next = NULL;
 		tmp->str = e->line;
 		e->dis_start = tmp;
@@ -28,7 +28,7 @@ void	get_display(t_env *e)
 	else
 	{
 		(!(tmp = (t_dis *)malloc(sizeof(t_dis)))) ?
-			error(e, 4, "Erreur malloc"): 0;
+			error(e, 4, "Erreur malloc") : 0;
 		tmp->next = NULL;
 		tmp->str = e->line;
 		e->dis_end->next = tmp;

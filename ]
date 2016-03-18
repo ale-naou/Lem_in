@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/18 19:29:41 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/18 15:32:45 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void		display_roomlinks(t_env *e)
 			ft_putchar('	');
 			ft_putendl(room->t_roomlinks[i]->name);
 		}
-		room = room->next;
 	}
 }
 
@@ -111,6 +110,6 @@ int			main(void)
 	create_link(&e);
 //	display(&e);
 	display_var(&e);
-	display_roomlinks(&e);
+//	display_roomlinks(&e);
 	return (0);
 }

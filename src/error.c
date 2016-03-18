@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 15:01:03 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/10 12:33:38 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/18 16:46:55 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	error(t_env *e, int n, char *str)
 	(void)e;
 	(void)n;
 	ft_putendl(str);
-	exit (0);
+	exit(0);
 }

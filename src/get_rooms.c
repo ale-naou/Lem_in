@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/17 18:04:24 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/18 16:46:30 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ static void		add_room(t_env *e)
 	tmp->weight = 0;
 	tmp->ant = 0;
 	tmp->n_links = 0;
-	if (e->start_mark == 1) 
+	if (e->start_mark == 1)
 	{
 		tmp->start = 1;
 		e->start_mark++;
 	}
-	if (e->end_mark == 1) 
+	if (e->end_mark == 1)
 	{
 		tmp->end = 1;
 		e->end_mark++;
 	}
 	tmp->name = e->r_tab[0];
 	tmp->x = ft_atof(e->r_tab[1]);
-	tmp->y = ft_atof(e->r_tab[2]);	
+	tmp->y = ft_atof(e->r_tab[2]);
 	tmp->next = NULL;
 	if (e->room_start == NULL)
 	{
@@ -45,9 +45,8 @@ static void		add_room(t_env *e)
 	else
 	{
 		e->room_end->next = tmp;
-		e->room_end = e->room_end->next ;
-	}	
-
+		e->room_end = e->room_end->next;
+	}
 }
 
 static int		is_room(t_env *e)
@@ -71,7 +70,6 @@ static int		is_room(t_env *e)
 
 int				get_rooms(t_env *e)
 {
-
 	if (get_comments(e) == 0)
 	{
 		if ((ft_strcmp(e->line, "##start") == 0) ||
