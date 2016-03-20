@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/18 16:46:30 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/20 16:10:25 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void		add_room(t_env *e)
 		tmp->end = 1;
 		e->end_mark++;
 	}
-	tmp->name = e->r_tab[0];
-	tmp->x = ft_atof(e->r_tab[1]);
-	tmp->y = ft_atof(e->r_tab[2]);
+	tmp->name = ft_strdup(e->tab[0]);
+	tmp->x = ft_atof(e->tab[1]);
+	tmp->y = ft_atof(e->tab[2]);
 	tmp->next = NULL;
 	if (e->room_start == NULL)
 	{
@@ -47,12 +47,14 @@ static void		add_room(t_env *e)
 		e->room_end->next = tmp;
 		e->room_end = e->room_end->next;
 	}
+	free(e->tab);
+	e->tab = NULL;
 }
 
 static int		is_room(t_env *e)
 {
-	e->r_tab = ft_strsplit(e->line, ' ');
-	if (e->r_tab[0] && !e->r_tab[1])
+	e->tab = ft_strsplit(e->line, ' ');
+	if (e->tab[0] && !e->tab[1])
 	{
 		if (is_tube(e) == 0)
 		{
@@ -60,10 +62,10 @@ static int		is_room(t_env *e)
 			return (-1);
 		}
 	}
-	if (!e->r_tab[0] || !e->r_tab[1] || !e->r_tab[2] || e->r_tab[3])
+	if (!e->tab[0] || !e->tab[1] || !e->tab[2] || e->tab[3])
 		error(e, 7, "Invalid room 1");
-	if (ft_strisprint(e->r_tab[0]) == 0 || ft_strisdigit(e->r_tab[1]) == 0 ||
-			ft_strisdigit(e->r_tab[2]) == 0)
+	if (ft_strisprint(e->tab[0]) == 0 || ft_strisdigit(e->tab[1]) == 0 ||
+			ft_strisdigit(e->tab[2]) == 0)
 		error(e, 7, "Invalid room 2");
 	return (0);
 }

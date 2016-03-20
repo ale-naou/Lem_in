@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:33:50 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/17 14:37:20 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/20 16:10:28 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,32 @@ void		add_tube(t_env *e)
 {
 	t_tube	*tmp;
 
+	if (!(tmp = (t_tube *)malloc(sizeof(t_tube))))
+		error(e, 4, "Erreur malloc");
+	tmp->start = ft_strdup(e->tab[0]);
+	tmp->end = ft_strdup(e->tab[1]);
 	if (e->tube_start == NULL)
 	{
-		if (!(tmp = (t_tube *)malloc(sizeof(t_tube))))
-			error(e, 4, "Erreur malloc");
-		tmp->start = e->t_tab[0];
-		tmp->end = e->t_tab[1];
 		tmp->next = NULL;
 		e->tube_start = tmp;
 		e->tube_end = tmp;
 	}
 	else
 	{
-		if (!(tmp = (t_tube *)malloc(sizeof(t_tube))))
-			error(e, 4, "Erreur malloc");
-		tmp->start = e->t_tab[0];
-		tmp->end = e->t_tab[1];
 		tmp->next = NULL;
 		e->tube_end->next = tmp;
 		e->tube_end = e->tube_end->next;
 	}
+	free(e->tab);
+	e->tab = NULL;
 }
 
 int			is_tube(t_env *e)
 {
-	e->t_tab = ft_strsplit(e->line, '-');
-	if (!e->t_tab[0] || !e->t_tab[1] || e->t_tab[2])
+	e->tab = ft_strsplit(e->line, '-');
+	if (!e->tab[0] || !e->tab[1] || e->tab[2])
 		error(e, 8, "Invalid tube 1");
-	if (ft_strisprint(e->t_tab[0]) == 0 || ft_strisprint(e->t_tab[1]) == 0)
+	if (ft_strisprint(e->tab[0]) == 0 || ft_strisprint(e->tab[1]) == 0)
 		error(e, 8, "Invalid tube 2");
 	return (0);
 }

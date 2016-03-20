@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/18 19:29:43 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/20 19:32:34 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ typedef struct		s_room
 	struct s_room	*next;
 }					t_room;
 
+typedef	struct		s_ants
+{
+	int				ants;
+	int				move;
+	t_room			*room;
+	struct s_ants	*next;
+}					t_ants;
+
 typedef struct 		s_env
 {
 	t_room			*room_start;
@@ -54,10 +62,12 @@ typedef struct 		s_env
 	int				end_mark;
 	t_tube			*tube_start;
 	t_tube			*tube_end;
+	t_ants			*ants_start;
+	t_ants			*ants_end;
 	t_dis			*dis_start;
 	t_dis			*dis_end;
-	char			**r_tab;
-	char			**t_tab;
+	char			**tab;
+	int				mapvalid;
 	double			n_read;
 	double			n_ants;
 	double			n_rooms;
@@ -89,6 +99,10 @@ void				get_display(t_env *e);
 */
 
 int					create_link(t_env *e);
+t_room				*find_roomstart(t_env *e);
+t_room				*find_roomend(t_env *e);
+int					resolve(t_env *e);
+void				recursive(t_env *e, t_room *path, int n);
 
 /*
 **	Deleting fonctions

@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/18 19:29:41 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/20 18:02:08 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ static void	init_env(t_env *e)
 	e->n_ants = 0;
 	e->n_rooms = 0;
 	e->n_tubes = 0;
-	e->r_tab = NULL;
-	e->t_tab = NULL;
+	e->mapvalid = 0;
+	e->tab = NULL;
+	e->ants_start = NULL;
+	e->ants_end = NULL;
 	e->dis_start = NULL;
 	e->dis_end = NULL;
 	e->room_start = NULL;
@@ -112,5 +114,6 @@ int			main(void)
 //	display(&e);
 	display_var(&e);
 	display_roomlinks(&e);
+	resolve(&e);
 	return (0);
 }

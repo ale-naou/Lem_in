@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:25:33 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/18 19:29:40 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/20 19:32:31 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,16 @@ t_room		*find_room(t_env *e, char *str)
 	return (NULL);
 }
 
-int			add_linkedrooms(t_env *e, t_room *r, t_tube *t, t_tube *tmp_t)
+int			add_linkedrooms(t_env *e, t_room *r, t_tube *t)
 {
 	if (ft_strcmp(r->name, t->start) == 0)
 	{
 		r->t_roomlinks[e->i] = find_room(e, t->end);
-		t = t->next;
-		tmp_t = t;
 		return (1);
 	}
 	else if (ft_strcmp(r->name, t->end) == 0)
 	{
 		r->t_roomlinks[e->i] = find_room(e, t->start);
-		t = t->next;
-		tmp_t = t;
 		return (1);
 	}
 	return (0);
@@ -57,8 +53,12 @@ void		linking_rooms(t_env *e, t_room *room)
 		tube = tmp_tube;
 		while (tube != NULL)
 		{
-			if (add_linkedrooms(e, room, tube, tmp_tube) != 0)
+			if (add_linkedrooms(e, room, tube) != 0)
+			{
+				tube = tube->next;
+				tmp_tube = tube;
 				break ;
+			}
 			tube = tube->next;
 		}
 	}
@@ -90,9 +90,10 @@ int			create_link(t_env *e)
 	{
 		room->n_links = define_nlinks(e, room);
 		if (!(room->t_roomlinks =
-					(t_room**)malloc(sizeof(t_room *) * room->n_links)))
+					(t_room**)malloc(sizeof(t_room *) * (room->n_links + 1))))
 			error(e, 4, "Error malloc");
 		linking_rooms(e, room);
+		room->t_roomlinks[e->i] = NULL;
 		room = room->next;
 	}
 	return (0);
