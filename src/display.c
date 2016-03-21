@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:40:09 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/17 12:04:04 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/21 16:54:26 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ static void		display_list(t_env *e)
 void			display(t_env *e)
 {
 	display_list(e);
+	ft_putchar('\n');
 	display_ants(e);
 }

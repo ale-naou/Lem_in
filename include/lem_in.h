@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/20 19:32:34 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:16:47 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct 		s_env
 	int				mapvalid;
 	double			n_read;
 	double			n_ants;
+	int				antsinend;
 	double			n_rooms;
 	double			n_tubes;
 	int				i;
@@ -103,6 +104,9 @@ t_room				*find_roomstart(t_env *e);
 t_room				*find_roomend(t_env *e);
 int					resolve(t_env *e);
 void				recursive(t_env *e, t_room *path, int n);
+int					manage_ants(t_env *e);
+int					move_ants(t_env *e);
+int					room_valid(t_ants *ants);
 
 /*
 **	Deleting fonctions

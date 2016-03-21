@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/20 18:02:08 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/21 17:10:07 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void		display_roomlinks(t_env *e)
 	int		i;
 
 	room = e->room_start;
+	ft_putendl("-----------\nRooms Links\n-----------");
 	while (room != NULL)
 	{
 		ft_putendl(room->name);
@@ -80,12 +81,29 @@ void		display_roomlinks(t_env *e)
 	}
 }
 
+void		display_roomweight(t_env *e)
+{
+	t_room	*room;
+
+	room = e->room_start;
+	ft_putendl("------------\nRooms Weight\n------------");
+	while (room != NULL)
+	{
+		ft_putstr(room->name);
+		ft_putchar('	');
+		ft_putnbr(room->weight);
+		ft_putchar('\n');
+		room = room->next;
+	}
+}
+
 static void	init_env(t_env *e)
 {
 	e->fd = 0;
 	e->line = NULL;
 	e->n_read = 0;
 	e->n_ants = 0;
+	e->antsinend = 0;
 	e->n_rooms = 0;
 	e->n_tubes = 0;
 	e->mapvalid = 0;
@@ -107,13 +125,15 @@ int			main(void)
 	t_env	e;
 
 	e.debug = 1;
-	
+
 	init_env(&e);
 	parsing(&e);
 	create_link(&e);
-//	display(&e);
-	display_var(&e);
-	display_roomlinks(&e);
 	resolve(&e);
+	display(&e);
+	manage_ants(&e);
+//	display_var(&e);
+//	display_roomlinks(&e);
+//	display_roomweight(&e);
 	return (0);
 }

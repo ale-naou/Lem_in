@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 17:19:03 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/20 19:32:33 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:16:36 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ void	recursive(t_env *e, t_room *path, int n)
 		}
 		if (path->t_roomlinks[i] && path->t_roomlinks[i]->start == 0 &&
 				path->t_roomlinks[i]->weight == 0)
-		{
-			ft_putendl(path->name);
 			recursive(e, path->t_roomlinks[i], n);
-		}
 		i++;	
 	}
 }
@@ -101,14 +98,6 @@ int		resolve(t_env *e)
 	{
 		display(e);
 		exit(0);
-	}
-	while (e->room_start != NULL)
-	{
-		ft_putstr(e->room_start->name);
-		ft_putchar('	');
-		ft_putnbr(e->room_start->weight);
-		ft_putchar('\n');
-		e->room_start = e->room_start->next;
 	}
 	return (0);
 }
