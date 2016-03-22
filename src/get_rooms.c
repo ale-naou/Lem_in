@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/21 16:14:42 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/22 23:22:14 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		add_room(t_env *e)
 		error(e, 4, "Erreur malloc") : 0;
 	tmp->start = 0;
 	tmp->end = 0;
-	tmp->weight = 0;
+	tmp->weight = MAX_INT;
 	tmp->ant = 0;
 	tmp->n_links = 0;
 	if (e->start_mark == 1)
@@ -59,6 +59,8 @@ static int		is_room(t_env *e)
 		if (is_tube(e) == 0)
 		{
 			e->n_read = 2;
+			if (check_room(e) != 0)
+				error(e, 1, "Error in Rooms");
 			return (-1);
 		}
 	}
@@ -93,5 +95,7 @@ int				get_rooms(t_env *e)
 		else
 			return (-1);
 	}
+	if (get_comments(e) == -1)
+		return (-1);
 	return (0);
 }

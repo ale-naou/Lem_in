@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 11:19:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/17 17:10:33 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/22 17:34:25 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int		get_ants(t_env *e)
 			ft_putendl("Bad format for ants");
 			return (-1);
 		}
+		e->n_read++;
 	}
-	e->n_read++;
+	else if (get_comments(e) == -1)
+		return (1);
 	return (0);
 }

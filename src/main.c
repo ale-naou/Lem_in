@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/21 17:10:07 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/22 23:10:37 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,15 @@ int			main(void)
 
 	init_env(&e);
 	parsing(&e);
-	create_link(&e);
-	resolve(&e);
 	display(&e);
-	manage_ants(&e);
-//	display_var(&e);
-//	display_roomlinks(&e);
-//	display_roomweight(&e);
+	if (check_room(&e) != -1)
+	{
+		create_link(&e);
+		//display_var(&e);
+		//display_roomlinks(&e);
+		resolve(&e);
+		//display_roomweight(&e);
+		manage_ants(&e);
+	}
 	return (0);
 }

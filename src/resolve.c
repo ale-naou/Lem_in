@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 17:19:03 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/21 19:16:36 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/22 23:26:56 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	recursive(t_env *e, t_room *path, int n)
 			break ;
 		}
 		if (path->t_roomlinks[i] && path->t_roomlinks[i]->start == 0 &&
-				path->t_roomlinks[i]->weight == 0)
+				path->t_roomlinks[i]->weight == MAX_INT)
 			recursive(e, path->t_roomlinks[i], n);
 		i++;	
 	}
@@ -96,7 +96,7 @@ int		resolve(t_env *e)
 	recursive(e, find_roomend(e), 0);
 	if (e->mapvalid == 0)
 	{
-		display(e);
+		ft_putendl("ERROR : No links between start and end");
 		exit(0);
 	}
 	return (0);

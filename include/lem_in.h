@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/21 19:16:47 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/22 23:12:34 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void				parsing(t_env *e);
 int					get_ants(t_env *e);
 int					get_rooms(t_env *e);
 int					get_tubes(t_env *e);
+int					check_room(t_env *e);
 int					check_tube(t_env *e);
 int					is_tube(t_env *e);
 void				add_tube(t_env *e);

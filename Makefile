@@ -6,7 +6,7 @@
 #    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/23 13:50:13 by ale-naou          #+#    #+#              #
-#    Updated: 2016/03/21 17:02:20 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/03/22 16:27:17 by ale-naou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS		= -Wall -Werror	-Wextra
 SRC_NAME	= main.c parsing.c error.c display.c					\
 				get_ants.c get_rooms.c get_tubes.c					\
 				get_display.c get_comments.c check_tube.c			\
-			  	create_link.c resolve.c move_ants.c
+			  	create_link.c resolve.c move_ants.c check_room.c
 OBJ_NAME	= $(SRC_NAME.c=.o)
 LIB_NAME	= libft.a
 

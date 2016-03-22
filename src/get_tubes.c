@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:33:50 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/20 16:10:28 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/22 23:27:02 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int			is_tube(t_env *e)
 {
 	e->tab = ft_strsplit(e->line, '-');
 	if (!e->tab[0] || !e->tab[1] || e->tab[2])
-		error(e, 8, "Invalid tube 1");
+		return (-1);
 	if (ft_strisprint(e->tab[0]) == 0 || ft_strisprint(e->tab[1]) == 0)
-		error(e, 8, "Invalid tube 2");
+		return (-1);
 	return (0);
 }
 
@@ -62,6 +62,10 @@ int			get_tubes(t_env *e)
 			else
 				e->n_tubes++;
 		}
+		else
+			return (-1);
 	}
+	else if (get_comments(e) == -1)
+		return (1);
 	return (0);
 }

@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   check_room.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 13:57:26 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/22 23:16:46 by ale-naou         ###   ########.fr       */
+/*   Created: 2016/03/22 15:55:58 by ale-naou          #+#    #+#             */
+/*   Updated: 2016/03/22 17:49:13 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			parsing(t_env *e)
+int		check_ends(t_env *e)
 {
-	while (ft_get_next_line(e->fd, &e->line) == 1)
+	int		start;
+	int 	end;
+	t_room	*room;
+
+	start = 0;
+	end = 0;
+	room = e->room_start;
+	while (room != NULL)
 	{
-		if (e->n_read == 0)
-		{
-			if (get_ants(e) == 0)
-				get_display(e);
-			else if (get_ants(e) == -1)
-				error(e, 11, "Ants invalid");
-		}
-		else if (e->n_read == 1)
-		{
-			if (get_rooms(e) != -1)
-				get_display(e);
-		}
-		if (e->n_read == 2)
-		{
-			if (get_tubes(e) == 0)
-				get_display(e);
-			else if (get_tubes(e) == -1)
-				break ;
-		}
+		room->start == 1 ? start++ : 0;
+		room->end == 1 ? end++ : 0;
+		room = room->next;
 	}
+	if (start != 1 || end != 1)
+		return (-1);
+	return (0);
+}
+
+int		check_room(t_env *e)
+{
+	if (e->n_rooms <= 0)
+		return (-1);
+	if (check_ends(e) != 0)
+		return (-1);
+	return (0);
 }

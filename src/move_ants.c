@@ -6,11 +6,26 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:14:51 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/21 19:16:40 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/22 23:27:00 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static int  find_end(t_room *room)
+{
+	int		i;
+
+	i = 0;
+	while (room->t_roomlinks[i] != NULL)
+	{
+		if (room->t_roomlinks[i]->end == 1)
+			return (1);
+		i++;
+	}
+
+	return (0);
+}
 
 int		room_valid(t_ants *ants)
 {
@@ -49,10 +64,16 @@ int		move_ants(t_env *e)
 	ants = e->ants_start;
 	while (ants != NULL)
 	{
-		ft_putstr("*");
-		ft_putnbr(room_valid(ants));
-//		ft_putnbr(e->antsinend);
-		ft_putstr("* ");
+		if (ants->room->start == 1 && find_end(ants->room) == 1)
+		{
+			ft_putchar('L');
+			ft_putnbr(ants->ants++);
+			ft_putchar('-');
+			ft_putstr(ants->room->name);
+			ft_putchar(' ');
+			e->antsinend++;
+			break ;
+		}
 		if (ants->room->end != 1 && (n = room_valid(ants)) != -1)
 		{
 			ants->room->ant = 0;
@@ -67,9 +88,8 @@ int		move_ants(t_env *e)
 			ft_putnbr(ants->ants);
 			ft_putchar('-');
 			ft_putstr(ants->room->name);
+			ft_putchar(' ');
 		}
-		ft_putchar('	');
-		sleep(1);
 		ants = ants->next;
 	}
 	ft_putchar('\n');
