@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:55:58 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/22 17:49:13 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/23 17:12:28 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		check_ends(t_env *e)
 {
 	int		start;
-	int 	end;
+	int		end;
 	t_room	*room;
 
 	start = 0;

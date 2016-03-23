@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 17:00:06 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/12 17:58:03 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/23 18:35:15 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_strisprint(const char *str)
 {
-	while(*str != '\0')
+	while (*str != '\0')
 	{
 		if (*str < 32 || *str > 126)
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/22 23:12:34 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/23 20:11:13 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "../lib/include/libft.h"
 # include <stdlib.h>
 
-#define MAX_INT 2147483647
-#define MIN_INT	-2147483648
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 
 typedef struct		s_dis
 {
@@ -54,7 +54,7 @@ typedef	struct		s_ants
 	struct s_ants	*next;
 }					t_ants;
 
-typedef struct 		s_env
+typedef struct		s_env
 {
 	t_room			*room_start;
 	t_room			*room_end;
@@ -76,10 +76,7 @@ typedef struct 		s_env
 	int				i;
 	int				fd;
 	char			*line;
-
-	int				debug;					//
 }					t_env;
-
 
 /*
 **	Parsing and check
@@ -104,9 +101,9 @@ int					create_link(t_env *e);
 t_room				*find_roomstart(t_env *e);
 t_room				*find_roomend(t_env *e);
 int					resolve(t_env *e);
-void				recursive(t_env *e, t_room *path, int n);
+void				path_finding(t_env *e, t_room *path, int n);
 int					manage_ants(t_env *e);
-int					move_ants(t_env *e);
+void				move_ants(t_env *e);
 int					room_valid(t_ants *ants);
 
 /*
@@ -114,19 +111,22 @@ int					room_valid(t_ants *ants);
 */
 
 void				del_invalidtube(t_env *e);
+void				del_all(t_env *e);
 
 /*
 **	Miscaellenous
 */
 
 void				display(t_env *e);
+void				get_display(t_env *e);
+void				print_antsmoves(t_ants *ants);
 void				error(t_env *e, int n, char *str);
 
 /*
 **	Debug Fonctions
 */
 
-void				display_var(t_env *e);	//
-void				debug(t_env *e);		//
+void				display_var(t_env *e);
+void				debug(t_env *e);
 
 #endif

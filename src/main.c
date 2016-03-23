@@ -6,19 +6,11 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:06:12 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/22 23:10:37 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/23 20:11:37 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void		debug(t_env *e)
-{
-	ft_putstr("Coucou ");
-	ft_putnbr(e->debug);
-	ft_putchar('\n');
-	e->debug++;
-}
 
 void		display_var(t_env *e)     //
 {
@@ -124,19 +116,18 @@ int			main(void)
 {
 	t_env	e;
 
-	e.debug = 1;
-
 	init_env(&e);
 	parsing(&e);
 	display(&e);
 	if (check_room(&e) != -1)
 	{
 		create_link(&e);
-		//display_var(&e);
-		//display_roomlinks(&e);
+//		display_var(&e);
+//		display_roomlinks(&e);
 		resolve(&e);
-		//display_roomweight(&e);
+//		display_roomweight(&e);
 		manage_ants(&e);
 	}
+	del_all(&e);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 17:19:03 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/22 23:26:56 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/23 13:43:58 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		create_antlist(t_env *e)
 	return (0);
 }
 
-void	recursive(t_env *e, t_room *path, int n)
+void	path_finding(t_env *e, t_room *path, int n)
 {
 	int		i;
 
@@ -85,15 +85,15 @@ void	recursive(t_env *e, t_room *path, int n)
 		}
 		if (path->t_roomlinks[i] && path->t_roomlinks[i]->start == 0 &&
 				path->t_roomlinks[i]->weight == MAX_INT)
-			recursive(e, path->t_roomlinks[i], n);
-		i++;	
+			path_finding(e, path->t_roomlinks[i], n);
+		i++;
 	}
 }
 
 int		resolve(t_env *e)
 {
 	create_antlist(e);
-	recursive(e, find_roomend(e), 0);
+	path_finding(e, find_roomend(e), 0);
 	if (e->mapvalid == 0)
 	{
 		ft_putendl("ERROR : No links between start and end");

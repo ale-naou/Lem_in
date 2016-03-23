@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 16:36:18 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/22 18:36:27 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/23 20:06:51 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,13 @@ int			check_tube(t_env *e)
 				if (check_tube_clone(e, tube) == 0)
 					tube = tube->next;
 				else
-				{
-					ft_putendl("Multiple declaration of similar tube");
 					return (-1);
-				}
 			}
 			else
-			{
-				ft_putendl("Tube connected to a room that doesn't exist");
 				return (-1);
-			}
 		}
 		else
-		{
-			ft_putendl("Tube conecting a room with itself");
 			return (-1);
-		}
 	}
 	return (0);
 }

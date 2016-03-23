@@ -6,33 +6,41 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/22 23:22:14 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/23 18:44:18 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void		init_room(t_env *e, t_room *tmp)
+{
+	tmp->name = NULL;
+	tmp->x = 0;
+	tmp->y = 0;
+	tmp->start = 0;
+	tmp->end = 0;
+	tmp->weight = MAX_INT;
+	tmp->ant = 0;
+	tmp->n_links = 0;
+	if (e->start_mark == 1 && e->end_mark == 0)
+	{
+		tmp->start = 1;
+		e->start_mark = 0;
+	}
+	else if (e->end_mark == 1 && e->start_mark == 0)
+	{
+		tmp->end = 1;
+		e->end_mark = 0;
+	}
+}
 
 static void		add_room(t_env *e)
 {
 	t_room	*tmp;
 
 	(!(tmp = (t_room *)malloc(sizeof(t_room)))) ?
-		error(e, 4, "Erreur malloc") : 0;
-	tmp->start = 0;
-	tmp->end = 0;
-	tmp->weight = MAX_INT;
-	tmp->ant = 0;
-	tmp->n_links = 0;
-	if (e->start_mark == 1)
-	{
-		tmp->start = 1;
-		e->start_mark++;
-	}
-	if (e->end_mark == 1)
-	{
-		tmp->end = 1;
-		e->end_mark++;
-	}
+		error(e, 4, "ERROR : malloc") : 0;
+	init_room(e, tmp);
 	tmp->name = ft_strdup(e->tab[0]);
 	tmp->x = ft_atof(e->tab[1]);
 	tmp->y = ft_atof(e->tab[2]);
@@ -47,6 +55,9 @@ static void		add_room(t_env *e)
 		e->room_end->next = tmp;
 		e->room_end = e->room_end->next;
 	}
+	ft_strdel(&e->tab[0]);
+	ft_strdel(&e->tab[1]);
+	ft_strdel(&e->tab[2]);
 	free(e->tab);
 	e->tab = NULL;
 }
@@ -60,15 +71,15 @@ static int		is_room(t_env *e)
 		{
 			e->n_read = 2;
 			if (check_room(e) != 0)
-				error(e, 1, "Error in Rooms");
+				error(e, 1, "Error : Rooms");
 			return (-1);
 		}
 	}
 	if (!e->tab[0] || !e->tab[1] || !e->tab[2] || e->tab[3])
-		error(e, 7, "Invalid room 1");
+		error(e, 7, "ERROR : ROOMS");
 	if (ft_strisprint(e->tab[0]) == 0 || ft_strisdigit(e->tab[1]) == 0 ||
 			ft_strisdigit(e->tab[2]) == 0)
-		error(e, 7, "Invalid room 2");
+		error(e, 7, "ERROR : ROOMS");
 	return (0);
 }
 
@@ -79,11 +90,11 @@ int				get_rooms(t_env *e)
 		if ((ft_strcmp(e->line, "##start") == 0) ||
 				(ft_strcmp(e->line, "##end")) == 0)
 		{
-			ft_strcmp(e->line, "##start") == 0 ? e->start_mark++ : 0;
-			ft_strcmp(e->line, "##end") == 0 ? e->end_mark++ : 0;
-			if (e->start_mark > 2 && e->end_mark > 2)
+			ft_strcmp(e->line, "##start") == 0 ? e->start_mark = 1 : 0;
+			ft_strcmp(e->line, "##end") == 0 ? e->end_mark = 1 : 0;
+			if (e->start_mark > 1 && e->end_mark > 1)
 			{
-				ft_putendl("Multiples starts or ends notifications");
+				error(e, 7, "Multiples starts or ends notifications");
 				return (-1);
 			}
 		}
