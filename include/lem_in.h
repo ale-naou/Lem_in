@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/23 20:11:13 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/24 20:01:15 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define C_RED "\e[31m"
+# define C_LRED "\e[91m"
+# define C_GREEN "\e[32m"
+# define C_LGREEN "\e[92m"
+# define C_YELLOW "\e[33m"
+# define C_LYELLOW "\e[93m"
+# define C_BLUE "\e[34m"
+# define C_LBLUE "\e[94m"
+# define C_MAG "\e[35m"
+# define C_LMAG "\e[95m"
+# define C_CYAN "\e[36m"
+# define C_LCYAN "\e[96m"
+# define C_END "\e[0m"
+# define OPTIONS "chClwr"
 
 typedef struct		s_dis
 {
@@ -31,6 +45,12 @@ typedef struct		s_tube
 	char			*end;
 	struct s_tube	*next;
 }					t_tube;
+
+typedef struct		s_com
+{
+	char			*str;
+	struct s_com	*next;
+}					t_com;
 
 typedef struct		s_room
 {
@@ -60,6 +80,8 @@ typedef struct		s_env
 	t_room			*room_end;
 	int				start_mark;
 	int				end_mark;
+	t_com			*com_start;
+	t_com			*com_end;
 	t_tube			*tube_start;
 	t_tube			*tube_end;
 	t_ants			*ants_start;
@@ -76,6 +98,7 @@ typedef struct		s_env
 	int				i;
 	int				fd;
 	char			*line;
+	int				opt;
 }					t_env;
 
 /*
@@ -117,9 +140,12 @@ void				del_all(t_env *e);
 **	Miscaellenous
 */
 
+int					get_option(char **av);
+int					option(char c, int opt);
 void				display(t_env *e);
 void				get_display(t_env *e);
-void				print_antsmoves(t_ants *ants);
+void				display_options(t_env *e);
+void				print_antsmoves(int opt, t_ants *ants);
 void				error(t_env *e, int n, char *str);
 
 /*

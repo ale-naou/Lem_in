@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 16:14:51 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/23 20:29:38 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/24 20:01:13 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void			move_ants(t_env *e)
 		if (ants->room->start == 1 && find_end(ants->room) == 1)
 		{
 			ants = move_ants2(e, ants, n);
-			print_antsmoves(ants);
+			print_antsmoves(e->opt, ants);
 			break ;
 		}
 		if (ants->room->end != 1 && (n = room_valid(ants)) != -1)
 		{
 			ants = move_ants2(e, ants, n);
-			print_antsmoves(ants);
+			print_antsmoves(e->opt, ants);
 		}
 		ants = ants->next;
 	}

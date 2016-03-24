@@ -1,0 +1,51 @@
+##COMMAND
+#lol
+100
+##COMMAND
+#lol
+A 1 1
+##COMMAND
+#lol
+B 2 2
+##COMMAND
+#lol
+##start
+##COMMAND
+#lol
+START 3 3
+##COMMAND
+#lol
+V 4 4
+##COMMAND
+#lol
+C 7 7
+##end
+END 5 5 
+##COMMAND
+#lol
+D 6 6
+##COMMAND
+#lol
+START-A
+##COMMAND
+#lol
+END-D
+##COMMAND
+D-C
+#lol
+##COMMAND
+#lol
+##COMMAND
+#lol
+C-B
+##COMMAND
+#lol
+##COMMAND
+#lol
+A-C
+##COMMAND
+#lol
+A-B
+##COMMAND
+#lol
+B-D
