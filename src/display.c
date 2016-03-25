@@ -6,40 +6,44 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:40:09 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/24 20:01:09 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/25 11:55:33 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static char	*color_ants()
-{
-	static int	i = 0;
-	char		*str;
+t_color g_color[12] = {
+	{0, C_RED},
+	{1, C_GREEN},
+	{2, C_YELLOW},
+	{3, C_BLUE},
+	{4, C_MAG},
+	{5, C_CYAN},
+	{6, C_LRED},
+	{7, C_LGREEN},
+	{8, C_LYELLOW},
+	{9, C_LBLUE},
+	{10, C_LMAG},
+	{11, C_LCYAN}};
 
-	i == 0 ? str = C_RED : 0;
-	i == 1 ? str = C_GREEN : 0;
-	i == 2 ? str = C_YELLOW : 0;
-	i == 3 ? str = C_BLUE : 0;
-	i == 4 ? str = C_MAG : 0;
-	i == 5 ? str = C_CYAN : 0;
-	i == 6 ? str = C_LRED : 0;
-	i == 7 ? str = C_LGREEN : 0;
-	i == 8 ? str = C_LYELLOW : 0;
-	i == 9 ? str = C_LBLUE : 0;
-	i == 10 ? str = C_LMAG : 0;
-	i == 11 ? str = C_LCYAN : 0;
-	if (i < 11)
-		i++;
-	else
-		i = 0;
-	return (str);
+void		color_ants(int ants)
+{
+	int i;
+	int index;
+
+	i = 0;
+	index = ants % 11;
+	if (ants != 0 && ants != 46)
+	{
+		while (g_color[i].index != index)
+			i++;
+		ft_putstr(g_color[i].color);
+	}
 }
 
 void		print_antsmoves(int opt, t_ants *ants)
 {
-
-	option('c', opt) ? ft_putstr(color_ants()) : 0;
+	option('c', opt) ? color_ants(ants->ants) : 0;
 	ft_putchar('L');
 	ft_putnbr(ants->ants);
 	ft_putchar('-');

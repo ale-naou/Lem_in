@@ -6,7 +6,7 @@
 #    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/23 13:50:13 by ale-naou          #+#    #+#              #
-#    Updated: 2016/03/24 17:27:06 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/03/25 13:41:04 by ale-naou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_NAME	= main.c get_options.c parsing.c error.c				\
 				get_ants.c get_rooms.c get_tubes.c get_comments.c	\
 				check_tube.c check_room.c							\
 			  	create_link.c resolve.c move_ants.c del_all.c		\
-				display.c display_options.c
+				display.c display_options.c display_roominfos.c
 OBJ_NAME	= $(SRC_NAME.c=.o)
 LIB_NAME	= libft.a
 

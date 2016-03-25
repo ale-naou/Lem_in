@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:22 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/24 20:01:15 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/25 13:27:34 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # define C_LCYAN "\e[96m"
 # define C_END "\e[0m"
 # define OPTIONS "chClwr"
+
+typedef struct		s_color
+{
+	int				index;
+	char			*color;
+}					t_color;
 
 typedef struct		s_dis
 {
@@ -145,6 +151,7 @@ int					option(char c, int opt);
 void				display(t_env *e);
 void				get_display(t_env *e);
 void				display_options(t_env *e);
+void				display_roominfos(t_env *e);
 void				print_antsmoves(int opt, t_ants *ants);
 void				error(t_env *e, int n, char *str);
 
