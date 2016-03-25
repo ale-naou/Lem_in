@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:21:00 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/24 17:32:13 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/25 16:49:13 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int				get_rooms(t_env *e)
 		if ((ft_strcmp(e->line, "##start") == 0) ||
 				(ft_strcmp(e->line, "##end")) == 0)
 		{
-			ft_strcmp(e->line, "##start") == 0 ? e->start_mark = 1 : 0;
-			ft_strcmp(e->line, "##end") == 0 ? e->end_mark = 1 : 0;
-			if (e->start_mark > 1 && e->end_mark > 1)
+			ft_strcmp(e->line, "##start") == 0 ? e->start_mark += 1 : 0;
+			ft_strcmp(e->line, "##end") == 0 ? e->end_mark += 1 : 0;
+			if (e->start_mark > 1 || e->end_mark > 1)
 			{
 				error(e, 7, "Multiples starts or ends notifications");
 				return (-1);

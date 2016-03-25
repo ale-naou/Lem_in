@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:57:26 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/03/23 17:50:54 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/03/25 16:48:45 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			parsing(t_env *e)
 {
-	while (ft_get_next_line(e->fd, &e->line) != 0)
+	while (ft_get_next_line(e->fd, &e->line) == 1)
 	{
 		if (e->n_read == 0)
 		{
